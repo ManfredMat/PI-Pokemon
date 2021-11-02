@@ -41,7 +41,7 @@ const handleClickNext = ()=>{
 
 const handleClickPrev = ()=>{
     setCurrentPage(currentPage - 1)
-    if((currentPage - 1) % pageNumbreLimit == 0 ){
+    if((currentPage - 1) % pageNumbreLimit === 0 ){
         setMaxPageNumbreLimit(maxPageNumbreLimit - pageNumbreLimit);
         setMinPageNumbreLimit(minPageNumbreLimit - pageNumbreLimit )
     }
@@ -80,7 +80,7 @@ if(pokemons.length === 0){
 dispatch(pokeFetch())    
 }
 else{console.log(pokemons.length)}
-},[])
+},[dispatch])
 
 const renderPokemon = (items)=>{
     let pokeArray = items.map((pokemon , index)=>{        
@@ -102,13 +102,13 @@ return(
 
     <ul className= 'pageNumbers'>
         <li>
-            <button onClick={handleClickPrev} disabled={currentPage == pages[0]?true : false} /*agregar css si no se va a ver horrible*/>Previous</button>
+            <button onClick={handleClickPrev} disabled={currentPage === pages[0]?true : false} /*agregar css si no se va a ver horrible*/>Previous</button>
         </li>
         {pageDectrementBtn}
     {renderPageNumbers}
         {pageIncrementBtn}
         <li>
-            <button onClick={handleClickNext} disabled={currentPage == pages[pages.length-1]?true : false} >Next</button>
+            <button onClick={handleClickNext} disabled={currentPage === pages[pages.length-1]?true : false} >Next</button>
         </li>
     </ul>
 

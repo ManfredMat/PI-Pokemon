@@ -20,7 +20,7 @@ router.get('/pokemons' ,async (req , res)=>{
             listPokeDb = listPokeDb.map((pokemon)=>{return pokemon.dataValues})
            
     
-            let pokeApi = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=150');
+            let pokeApi = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40');
     
             pokeApi = pokeApi.data.results
     
@@ -32,7 +32,8 @@ router.get('/pokemons' ,async (req , res)=>{
             let listPokeApi = await Promise.all(pokePromise); 
             
             for(let i of listPokeApi){
-    
+                let pokeTypes = i.data.types.map((type)=>{return type.type.name})
+
                 allPokemons.push({
                     
                     id:i.data.id,
@@ -43,7 +44,8 @@ router.get('/pokemons' ,async (req , res)=>{
                     defense:i.data.stats[2].base_stat,
                     speed:i.data.stats[5].base_stat,
                     height:i.data.height,
-                    weight:i.data.weight
+                    weight:i.data.weight,
+                    types:pokeTypes
                 })
             }
             allPokemons = allPokemons.concat(listPokeDb)
@@ -59,6 +61,7 @@ router.get('/pokemons/:name' , async(req,res)=>{
     
         try{
         let pokeCall = await axios.get(url)
+        let pokeTypes = pokeCall.data.types.map((type)=>{return type.type.name})
         pokemon={
         id:pokeCall.data.id,
         name:pokeCall.data.name,
@@ -68,7 +71,8 @@ router.get('/pokemons/:name' , async(req,res)=>{
         defense:pokeCall.data.stats[2].base_stat,
         speed:pokeCall.data.stats[5].base_stat,
         height:pokeCall.data.height,
-        weight:pokeCall.data.weight
+        weight:pokeCall.data.weight,
+        types:pokeTypes
         }
         
         res.send(pokemon)
@@ -83,6 +87,7 @@ router.get('/pokemons/:PokeId' , async(req,res)=>{
     
         try{
         let pokeCall = await axios.get(url)
+        let pokeTypes = pokeCall.data.types.map((type)=>{return type.type.name})
         pokemon={
         id:pokeCall.data.id,
         name:pokeCall.data.name,
@@ -92,7 +97,8 @@ router.get('/pokemons/:PokeId' , async(req,res)=>{
         defense:pokeCall.data.stats[2].base_stat,
         speed:pokeCall.data.stats[5].base_stat,
         height:pokeCall.data.height,
-        weight:pokeCall.data.weight
+        weight:pokeCall.data.weight,
+        types:pokeTypes
         }
         
         res.send(pokemon)
