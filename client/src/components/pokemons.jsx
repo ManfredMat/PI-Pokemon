@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector  } from "react-redux";
 import { pokeFetch } from "../actions";
 import Pokemon from "./pokemon";
-
+import style from './pokemons.module.css'
 export default function Pokemons(){
 
 let pokemons = useSelector((state)=>state.filteredPokemons);
@@ -87,22 +87,21 @@ const renderPokemon = (items)=>{
         return <Pokemon key={index} pokemon = {pokemon}/>
     })
       
-    return <div>
+    return <>
         {pokeArray}
-    </div>
+    </>
 } 
 
 
 
 return(
-    <>
-    <div>
+    <div className= {style.bodyPokemons}>
+    <div className = {style.contenedorPokemon}>
     {renderPokemon(currentItems)}
-    </div>
-
-    <ul className= 'pageNumbers'>
+    </div>    
+    <ul className= {style.pageNumbers}>
         <li>
-            <button onClick={handleClickPrev} disabled={currentPage === pages[0]?true : false} /*agregar css si no se va a ver horrible*/>Previous</button>
+            <button onClick={handleClickPrev} disabled={currentPage === pages[0]?true : false} >Back</button>
         </li>
         {pageDectrementBtn}
     {renderPageNumbers}
@@ -112,7 +111,7 @@ return(
         </li>
     </ul>
 
-    </>
+    </div>
     );
 }
 

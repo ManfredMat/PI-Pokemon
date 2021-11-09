@@ -1,0 +1,40 @@
+.navBar{
+    background:url('http://adwallpapers.xyz/uploads/posts/235244-red-Pok-mon-circle-Pok-balls-brand-shape-line-font.jpg');
+    display:inline-flex;
+    width: 100%;
+}
+.imgNav{
+    margin-left: 5px;
+}
+.pokemonLab{
+margin-left: 70px;
+color: black;
+
+}
+.pokeDex{
+   margin-left:40px;
+   color: black;
+}
+.pokemonLab:hover{
+   
+    cursor: url(https://cdn.custom-cursor.com/db/249/32/arrow2282.png) , pointer!important;
+    text-decoration:underline;
+    
+}
+.pokemonLab:active{
+    cursor: url(https://cdn.custom-cursor.com/db/250/32/arrow2282.png) , pointer!important;
+}
+
+.pokeDex:hover{
+   
+    cursor: url(https://cdn.custom-cursor.com/db/249/32/arrow2282.png) , pointer!important;
+    text-decoration:underline;
+    
+}
+.pokeDex:active{
+    cursor: url(https://cdn.custom-cursor.com/db/250/32/arrow2282.png) , pointer!important;
+}
+
+.link{
+    text-decoration: none;
+}

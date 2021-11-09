@@ -1,0 +1,33 @@
+.contenedorPokemon{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around
+}
+.bodyPokemons{
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.pageNumbers{
+    list-style: none;
+    display: flex;
+    color:white;
+    justify-content: center
+}
+.pageNumbers li{
+    padding:10px;
+    border: 1px solid  rgb(28, 1, 6);
+    border-radius: 10px;
+    background-color: rgb(128, 5, 27 , 0.5);
+    cursor:pointer;
+    margin: 5px;
+}
+.pageNumbers li button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}

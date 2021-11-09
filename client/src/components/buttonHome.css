@@ -1,0 +1,27 @@
+.homeButton{
+    box-sizing: content-box ;
+    width: 30%;
+    height: 25%;
+    border: 1px solid white;
+    border-radius: .75rem;
+    background:rgb(104, 104, 118 , 0.5);
+    text-align: center;
+    margin:auto;
+    margin-top: 20%;
+    text-shadow: 2px 2px rgb(100, 10, 10);
+    font-family: "Brush Script MT", Cursive;
+    color: white;
+    padding: .375rem .75rem;   
+    
+}
+.homeButton:hover{
+    background-color: rgb(100, 10, 10);
+    cursor: url(https://cdn.custom-cursor.com/db/249/32/arrow2282.png) , pointer!important;
+    
+}
+.homeButton:active{
+    cursor: url(https://cdn.custom-cursor.com/db/250/32/arrow2282.png) , pointer!important;
+}
+.linkHome{
+    text-decoration: none;
+}

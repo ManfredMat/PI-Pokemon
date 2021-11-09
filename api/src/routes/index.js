@@ -15,11 +15,20 @@ router.get('/pokemons' ,async (req , res)=>{
     try{
             let allPokemons =[];
 
-            let listPokeDb = await Pokemon.findAll();
+            let listPokeDb = await Pokemon.findAll({
+                include:[{
+                    model: Type , attributes:['name'],
+                    through:{
+                        attributes:[]
+                    }
+                }]
+            });
 
             listPokeDb = listPokeDb.map((pokemon)=>{return pokemon.dataValues})
-           
-    
+            listPokeDb.forEach(pokemon => {
+                pokemon.types = pokemon.types.map((type)=>{return type.name})
+            });
+            
             let pokeApi = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=40');
     
             pokeApi = pokeApi.data.results
@@ -56,9 +65,32 @@ router.get('/pokemons' ,async (req , res)=>{
     
 })
 router.get('/pokemons/:name' , async(req,res)=>{
-    let name = req.params.name;    
-    let url =`https://pokeapi.co/api/v2/pokemon/${name}`
+    let name = req.params.name;
     
+    let url =`https://pokeapi.co/api/v2/pokemon/${name}`
+
+    let pokemonApi = await Pokemon.findAll({
+        where:{
+           name: name,
+        },
+        include:[{
+            model: Type , attributes:['name'],
+            through:{
+                attributes:[]
+            }
+        }]
+    });;
+     
+    if(pokemonApi.length > 0){
+
+        pokemonApi.forEach(pokemon => {
+                pokemon.types = pokemon.types.map((type)=>{return type.name})
+            });
+         
+          
+        res.send(pokemonApi);
+    }else{
+
         try{
         let pokeCall = await axios.get(url)
         let pokeTypes = pokeCall.data.types.map((type)=>{return type.type.name})
@@ -76,7 +108,10 @@ router.get('/pokemons/:name' , async(req,res)=>{
         }
         
         res.send(pokemon)
-        }catch(error){console.log(error)}
+        }catch(error){
+        console.log(error)}
+    }
+    
         
     
 })
@@ -122,18 +157,17 @@ if(!!typesDb.length){
         const newType = await Type.create({
             name: i.name
         })
-        console.log(newType)
     }
 
-    res.send(200)
+    res.send(typeApi)
 
     }catch(error){console.log(error)}
 }
 })
 router.post('/addpokemon',async (req , res)=>{
 
-    let { name ,image , life , strenght , defense , speed , height ,weight} = req.body;
-    console.log(name)    
+    let { name ,image , life , strenght , defense , speed , height ,weight , type} = req.body;
+    console.log(type)    
     
     try{
         
@@ -146,7 +180,9 @@ router.post('/addpokemon',async (req , res)=>{
             speed,
             height,
             weight
-        });  
+        });
+        
+        await newPokemon.setTypes(type)
         
         res.json(newPokemon);
 

@@ -1,17 +1,10 @@
-import { pokeFetch } from "../actions";
-import { useDispatch , useSelector} from "react-redux";
+import { Link } from 'react-router-dom';
+import './buttonHome.css';
+
 export default function ButtonHome(){
-    let dispatch = useDispatch()
-    let pokemons = useSelector((state)=>state.pokemons)
-    function onClickFetch(e){
-        e.preventDefault();
-        dispatch(pokeFetch())
-    }
-    function onClickConsole(){
-        console.log(pokemons)
-    }
-    return<div>
-    <button onClick={onClickFetch}>Gotta Catch'em all !!</button>
-    <button onClick={onClickConsole}>test</button>    
-    </div>
+    return(
+        <Link to='/pokemain' className="linkHome">
+        <h1 className="homeButton">Gotta Catch'em All</h1>
+        </Link>
+    )
 }

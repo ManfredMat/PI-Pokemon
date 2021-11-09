@@ -1,27 +1,33 @@
-import React,{setState, useState,useEffect } from 'react'
-import {useDispatch,useSelector} from 'react-redux'
+import React,{useState } from 'react'
+import {useDispatch} from 'react-redux'
+import { Link } from 'react-router-dom';
 import {pokeSearch} from '../actions/index'
-
 export default function SearchBar(){
 
     const[search , setSearch]= useState('');
-    let pokeBuscado = useSelector((state)=>state.searchedPokemon)
+    
     let dispatch = useDispatch()
     
 
     function onSubmit(e){
         e.preventDefault();
         dispatch(pokeSearch(search))
-        console.log(pokeBuscado)
+        
+    }
+    function onClickClear(){
+        setSearch('')
     }
     function onChange(e){
-        setSearch(e.target.value)
+        setSearch(e.target.value.toLowerCase())
         
     }
     return <div>
         <form onSubmit={onSubmit}>
             <input placeholder="Pokebusqueda..." onChange={onChange} value={search}/>
-            <button type="sumbit">Buscar</button>
-        </form>
+            <Link to={`/pokedetail/${search}`}>
+            <button type="sumbit" onClick={onClickClear}>Buscar</button>
+            </Link>
+        </form>        
+
     </div>
 }

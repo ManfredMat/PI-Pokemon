@@ -1,0 +1,42 @@
+.contenedorCard{
+    position:absolute;
+    display: flex;
+    background: no-repeat center/100% url('https://c.wallhere.com/photos/39/8b/Pok_mon_Pok_Balls_artwork-1368481.jpg!d' );
+    border-radius: 10em;
+    width: 30%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: 30em;
+    margin-top: 5em;
+    position: absolute;
+}
+.cardheader{
+    position:relative;
+    top: 0.5em;
+    text-transform: capitalize;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: center;
+}
+.cardheader h4{
+    margin-left: 10px;
+}
+.contenedorImg{
+    position: relative;
+    right: 5.5em;
+    top: 1em;
+    border:solid black 1.5px;
+    border-radius: 1em;
+    background-color: rgba(48, 48, 48, 0.487);
+}
+.cardbody{
+    position: relative;
+    display: flex;
+    border:solid rgb(65, 65, 65) 1.5px;
+    background:rgb(255, 255, 255 , 0.8);
+    flex-direction: column;
+    bottom: 6em;
+    left:3em;
+}

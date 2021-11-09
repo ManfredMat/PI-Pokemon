@@ -1,24 +1,25 @@
 import './App.css';
+import './components/buttonHome.css'
 import Pokemons from './components/pokemons';
-import Order from './components/order';
 import { Route, Switch } from 'react-router';
 import ButtonHome from './components/buttonHome';
 import PokeCreator from './components/pokemonCreator';
 import PokeNavbar from './components/pokeNavBar';
-
+import PokeCard from './components/pokeCard';
+import FilterBar from './components/filterBar';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
-        <PokeNavbar/>
+    <div>
+        
         <Switch>
 
           <Route
           exact
           path='/'
           >
-          <ButtonHome/>
+          
+          <ButtonHome className = "buttonHome"/>
          
           </Route>
 
@@ -26,7 +27,8 @@ function App() {
           exact
           path='/pokemain'
           >
-          <Order/>
+          <PokeNavbar/>
+          <FilterBar/>
           <Pokemons/>
           </Route>
 
@@ -34,7 +36,15 @@ function App() {
           exact
           path='/pokelab'
           >
+          <PokeNavbar/>
           <PokeCreator/>
+          </Route>
+          <Route
+          exact
+          path='/pokedetail/:name'
+          >
+          <PokeNavbar/>
+          <PokeCard/>
           </Route>
         </Switch>
     </div>      
