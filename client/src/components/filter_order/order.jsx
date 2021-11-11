@@ -1,16 +1,15 @@
-import React from 'react'
 import {useDispatch} from 'react-redux'
-import { pokeSort } from '../actions'
-
+import { pokeSort } from '../../actions'
+import style from './order_filter.module.css'
 
 
 export default function Order(){
     
     let dispatch = useDispatch()
     function onSelectChange(e){
-        dispatch(pokeSort(e.target.value))
+        dispatch(pokeSort(e.target.value))        
     }
-    return <select name="select" onChange={onSelectChange}>
+    return <select name="select" onChange={onSelectChange} className={style.filter}>
         <option value="">--SELECT--</option>
         <option value="DEF">DEFAULT</option>
         <option value="ASC">A-Z</option>

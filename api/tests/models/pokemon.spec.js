@@ -15,7 +15,10 @@ describe('Pokemon model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Pokemon.create({ name: 'Pikachu' });
+        Pokemon.create({ 
+        name: 'Pikachu',
+        image:'https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2021/04/Pikachu-Sentado-Png.png?w=900&ssl=1'
+       });
       });
     });
   });

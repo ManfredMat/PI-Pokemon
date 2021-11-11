@@ -56,3 +56,6 @@
 .checkboxLabel{
     text-transform: capitalize;
 }
+.checkboxLabel input:checked{
+    color: transparent;
+}

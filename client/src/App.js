@@ -1,12 +1,11 @@
-import './App.css';
-import './components/buttonHome.css'
-import Pokemons from './components/pokemons';
+import style from './App.module.css';
+import Pokemons from './components/pokemons/pokemons';
 import { Route, Switch } from 'react-router';
-import ButtonHome from './components/buttonHome';
-import PokeCreator from './components/pokemonCreator';
-import PokeNavbar from './components/pokeNavBar';
-import PokeCard from './components/pokeCard';
-import FilterBar from './components/filterBar';
+import ButtonHome from './components/buttonHome/buttonHome';
+import PokeCreator from './components/pokemonCreator/pokemonCreator';
+import PokeNavbar from './components/navBar/pokeNavBar';
+import PokeCard from './components/pokemonDetail/pokeCard';
+import FilterBar from './components/filter_order/filterBar';
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
           exact
           path='/'
           >
-          
+          <img src='https://i.ibb.co/Kw4kx5D/2.png' className={style.landingPokemon} alt=""/>
           <ButtonHome className = "buttonHome"/>
          
           </Route>
@@ -39,6 +38,7 @@ function App() {
           <PokeNavbar/>
           <PokeCreator/>
           </Route>
+
           <Route
           exact
           path='/pokedetail/:name'
@@ -46,6 +46,15 @@ function App() {
           <PokeNavbar/>
           <PokeCard/>
           </Route>
+
+          <Route
+          exact
+          path='/pokedetail?id='
+          >
+          <PokeNavbar/>
+          <PokeCard/>
+          </Route>
+          
         </Switch>
     </div>      
   );

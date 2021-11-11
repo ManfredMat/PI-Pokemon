@@ -1,7 +1,9 @@
 import React,{useState } from 'react'
 import {useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom';
-import {pokeSearch} from '../actions/index'
+import {pokeSearch} from '../../actions/index'
+import style from './filterBar.module.css'
+
 export default function SearchBar(){
 
     const[search , setSearch]= useState('');
@@ -23,9 +25,9 @@ export default function SearchBar(){
     }
     return <div>
         <form onSubmit={onSubmit}>
-            <input placeholder="Pokebusqueda..." onChange={onChange} value={search}/>
+            <input placeholder="Pokebusqueda..." onChange={onChange} value={search} className={style.buttonFilter}/>
             <Link to={`/pokedetail/${search}`}>
-            <button type="sumbit" onClick={onClickClear}>Buscar</button>
+            <button type="sumbit" onClick={onClickClear} className={style.buttonFilter}>Buscar</button>
             </Link>
         </form>        
 

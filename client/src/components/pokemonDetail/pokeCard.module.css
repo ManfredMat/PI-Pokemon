@@ -13,7 +13,8 @@
 }
 .cardheader{
     position:relative;
-    top: 0.5em;
+    top: 3em;
+    right: 5em;
     text-transform: capitalize;
     display: flex;
     width: 100%;
@@ -31,6 +32,12 @@
     border-radius: 1em;
     background-color: rgba(48, 48, 48, 0.487);
 }
+.typesImg{
+    display: flex;
+    position: relative;
+    top:3em;
+    right: 2em;
+}
 .cardbody{
     position: relative;
     display: flex;
@@ -38,5 +45,12 @@
     background:rgb(255, 255, 255 , 0.8);
     flex-direction: column;
     bottom: 6em;
-    left:3em;
+    left:6em;
+}
+.error404{
+    position: relative;
+    width: 35em;
+    left:22em;
+    top:5em;
+    
 }

@@ -31,3 +31,8 @@
     font-size: 1rem;
     cursor: pointer;
 }
+.loading{
+    position:relative;
+    left: 28em;
+    top:5em;
+}

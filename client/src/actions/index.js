@@ -4,8 +4,10 @@ export const FETCH_POKEMONS = 'FETCH_POKEMONS'
 export const FETCH_TYPES = 'FETCH_TYPES'
 export const CREATE_POKEMON = 'CREATE_POKEMON'
 export const FILTER_POKEMON = 'FILTER_POKEMON'
+export const FILTER_POKEMON_TYPE = 'FILTER_POKEMON_TYPE'
 export const SEARCH_POKEMON = 'SEARCH_POKEMON'
 export const SORT_POKEMON = 'SORT_POKEMON'
+export const CLEAN_SEARCH ='CLEAN_SEARCH'
 
 export function pokeFetch(){
     return function(dispatch){
@@ -30,6 +32,7 @@ export function pokeSearch(search){
     return function(dispatch){
         axios.get('http://localhost:3001/pokemons/' + search )
         .then((pokemons)=>{
+            
             dispatch({
                 type:SEARCH_POKEMON,
                 payload:pokemons
@@ -50,6 +53,12 @@ export function pokeFilter(filter){
         payload:filter
     }
 }
+export function filterByType(filter){
+    return{
+        type:FILTER_POKEMON_TYPE,
+        payload:filter
+    }
+}
 export function typeFetch(){
     return function(dispatch){
         axios.get('http://localhost:3001/types')
@@ -60,5 +69,10 @@ export function typeFetch(){
             })
         })
         .catch((error)=>{console.log(error)})
+    }
+}
+export function clearSearched(){
+    return{
+        type:CLEAN_SEARCH,
     }
 }

@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom"
 import './pokeNavBar.css'
-const URL ="https://w7.pngwing.com/pngs/728/197/png-transparent-pokemon-pikachu-pokemon-go-pokemon-yellow-pokemon-pikachu-pikachu-leaf-dog-like-mammal-smiley-thumbnail.png"
+import {clearSearched} from '../../actions/index'
+import { useDispatch } from "react-redux"
+
+const URL ="https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2021/04/Pikachu-Sentado-Png.png?w=900&ssl=1"
 export default function PokeNavbar(){
+    
+    let dispatch=useDispatch()
+
+    function handleClick(){
+        dispatch(clearSearched())
+    }
+
     return <div className="navBar">
         <div>
          <a href="https://www.youtube.com/watch?v=Rsv2VkoIpk0" target="blank" >
@@ -12,7 +22,7 @@ export default function PokeNavbar(){
         <Link to='/pokelab' className="link">           
         <p className="pokemonLab">Pokemon Lab</p>
         </Link>
-        <Link to='/pokemain' className="link">
+        <Link to='/pokemain' className="link" onClick={handleClick}>
         <p className="pokeDex">Pokedex</p>
         </Link>
 

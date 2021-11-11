@@ -1,4 +1,4 @@
-import {FETCH_POKEMONS , SEARCH_POKEMON , SORT_POKEMON , CREATE_POKEMON , FILTER_POKEMON , FETCH_TYPES} from '../actions/index'
+import {FETCH_POKEMONS , SEARCH_POKEMON , SORT_POKEMON , CREATE_POKEMON , FILTER_POKEMON , FETCH_TYPES ,FILTER_POKEMON_TYPE ,CLEAN_SEARCH} from '../actions/index'
 
 const initialState={
     pokemons:[],
@@ -9,6 +9,7 @@ const initialState={
 }
 
 const reducer = (state = initialState , action)=>{
+    
     switch (action.type){
         case FETCH_POKEMONS:
             state.pokemons=[]
@@ -23,21 +24,20 @@ const reducer = (state = initialState , action)=>{
                 searchedPokemon: action.payload.data
             }
         case SORT_POKEMON:
+
             let sortedPokemons=state.filteredPokemons
+
             if(action.payload === "DEF"){
-                sortedPokemons = sortedPokemons.sort((a,b)=>{
-                    if(a.id > b.id){
-                        
-                        return  1 
-                    }
-                    if(a.id < b.id){
-                        
-                        return  (-1 )
-                    }
-                    return 0
-                })
+                
+                return{
+                    ...state,
+                    filteredPokemons:state.pokemons
+                }
+                
             }
+
             if(action.payload === "STRG"){
+
                 sortedPokemons = sortedPokemons.sort((a,b)=>{
                     if(a.strenght < b.strenght){
                         
@@ -62,12 +62,12 @@ const reducer = (state = initialState , action)=>{
                         return action.payload === "ASC" ? 1 : -1;
                     }
                     return 0
-                })
+                })    
             }
             
             return{
                 ...state,
-                filteredPokemons:sortedPokemons
+                filteredPokemons:sortedPokemons.map((pokemon)=> pokemon)
             }
         case CREATE_POKEMON:
             let nuevosPokemons = [...state.pokemons , action.payload]
@@ -78,11 +78,12 @@ const reducer = (state = initialState , action)=>{
                 filteredPokemons:nuevosPokemons,
             }
         case FILTER_POKEMON:
-            let pokeFilter = state.pokemons
+            let pokemons = state.pokemons
+            let pokeFilter = state.filteredPokemons
             if(action.payload === "ALL"){
                 return{
                     ...state,
-                    filteredPokemons:pokeFilter
+                    filteredPokemons:pokemons
                 }
             }
             if(action.payload === "ORG"){
@@ -91,19 +92,46 @@ const reducer = (state = initialState , action)=>{
             if(action.payload === "CTM"){
                 pokeFilter = pokeFilter.filter(pokemon=> typeof pokemon.id === 'string')
             }
-            console.log(pokeFilter)
+            
             return{
                 ...state,
                 filteredPokemons:pokeFilter
             }
         case FETCH_TYPES:
             state.types=[]
-            console.log(action.payload)
+            
             return{
                 ...state,
                 types: action.payload.data,
             }
-
+        case FILTER_POKEMON_TYPE:
+            let pokemon = state.pokemons
+            let pokeFilte = state.filteredPokemons
+            if(action.payload === "RESET"){
+                return{
+                    ...state,
+                    filteredPokemons:pokemon
+                }
+            }
+            if(action.payload === "ALL"){
+                return{
+                    ...state,
+                    filteredPokemons:pokeFilte
+                }
+            }
+            if(action.payload !== "ALL" && action.payload !== ""){
+                
+                pokeFilte=pokeFilte.filter( pokemon => pokemon.types.includes(action.payload) === true)
+            }
+            return{
+                ...state,
+                filteredPokemons:pokeFilte
+            }
+        case CLEAN_SEARCH:
+            return{
+                ...state,
+                searchedPokemon:[]
+            }
         default: return state
     }
 

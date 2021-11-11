@@ -45,3 +45,7 @@ justify-content: center;
 .types:hover{
     zoom: 2;
 }
+.link{
+    text-decoration: none;
+    color: black;
+}

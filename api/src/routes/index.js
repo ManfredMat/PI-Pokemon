@@ -58,7 +58,7 @@ router.get('/pokemons' ,async (req , res)=>{
                 })
             }
             allPokemons = allPokemons.concat(listPokeDb)
-
+            res.status(200);
             res.send(allPokemons)
     
         }catch(error){res.send(error)}
@@ -109,15 +109,15 @@ router.get('/pokemons/:name' , async(req,res)=>{
         
         res.send(pokemon)
         }catch(error){
-        console.log(error)}
+        res.send(error)}
     }
     
         
     
 })
-router.get('/pokemons/:PokeId' , async(req,res)=>{
-    let id = req.params.PokeId
-   
+router.get('/pokemon' , async(req,res)=>{
+    let id = req.query.id
+    
     let url =`https://pokeapi.co/api/v2/pokemon/${id}`
     
         try{
@@ -168,7 +168,12 @@ router.post('/addpokemon',async (req , res)=>{
 
     let { name ,image , life , strenght , defense , speed , height ,weight , type} = req.body;
     console.log(type)    
-    
+    if(image === "" || image === null){
+        image='https://i.ibb.co/98sbsX0/pngegg.png'
+    }
+    if(type.length === 0){
+        type.push('19')
+    }
     try{
         
         const newPokemon = await Pokemon.create({
