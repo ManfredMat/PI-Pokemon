@@ -92,7 +92,7 @@ export default function PokeCreator(){
         e.preventDefault()
         
         if(nuevoPokemon.name !== null ){
-            axios.post('http://localhost:3001/addpokemon' , nuevoPokemon)
+            axios.post('/addpokemon' , nuevoPokemon)
             .then((response)=>{
                 dispatch(pokeFetch())
                 history.push('/pokemain');

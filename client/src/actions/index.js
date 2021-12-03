@@ -11,7 +11,7 @@ export const CLEAN_SEARCH ='CLEAN_SEARCH'
 
 export function pokeFetch(){
     return function(dispatch){
-        axios.get('http://localhost:3001/pokemons')
+        axios.get('/pokemons')
         .then((pokemons)=>{
             dispatch({
                 type:FETCH_POKEMONS,
@@ -30,7 +30,7 @@ export function pokeAdd(pokemon){
 export function pokeSearch(search){
     
     return function(dispatch){
-        axios.get('http://localhost:3001/pokemons/' + search )
+        axios.get('/pokemons/' + search )
         .then((pokemons)=>{
             
             dispatch({
@@ -61,7 +61,7 @@ export function filterByType(filter){
 }
 export function typeFetch(){
     return function(dispatch){
-        axios.get('http://localhost:3001/types')
+        axios.get('/types')
         .then((types)=>{
             dispatch({
                 type:FETCH_TYPES,
