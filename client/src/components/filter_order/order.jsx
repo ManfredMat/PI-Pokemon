@@ -15,6 +15,7 @@ export default function Order(){
         <option value="ASC">A-Z</option>
         <option value="DES">Z-A</option>
         <option value="STRG">STRENGHT</option>
+        <option value="DEFENSE">DEFENSE</option>
         
     </select>
 }

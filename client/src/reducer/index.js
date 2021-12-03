@@ -50,6 +50,19 @@ const reducer = (state = initialState , action)=>{
                     return 0
                 })
             }
+            if(action.payload === "DEFENSE"){
+                sortedPokemons = sortedPokemons.sort((a,b)=>{
+                    if(a.defense < b.defense){
+                        
+                        return  1 
+                    }
+                    if(a.defense > b.defense){
+                        
+                        return  (-1 )
+                    }
+                    return 0
+                })
+            }
             if(action.payload === "ASC" || action.payload === "DES"){
 
                 sortedPokemons = sortedPokemons.sort((a,b)=>{

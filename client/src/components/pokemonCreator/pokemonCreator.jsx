@@ -60,6 +60,7 @@ export default function PokeCreator(){
         arrTypes.push(e.target.name)
         
         }
+        console.log(arrTypes)
         setNuevoPokemon({
             ...nuevoPokemon,
             type:arrTypes
